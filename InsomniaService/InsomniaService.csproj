@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B2F2D7BC-A89F-45AA-95F8-D42A4DEEBC11}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MadWizard.Insomnia</RootNamespace>
+    <AssemblyName>InsomniaService</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icons\SHUTDOWN.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cassia, Version=2.0.0.60, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cassia.2.0.0.60\lib\2.0\Cassia.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NamedPipeWrapper, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NamedPipeWrapper.1.5.0\lib\net40\NamedPipeWrapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EventBase.cs" />
+    <Compile Include="Events\UserPresentEvent.cs" />
+    <Compile Include="Exceptions\ComponentNotFoundException.cs" />
+    <Compile Include="Modules\Analyzers\IdleTime.cs" />
+    <Compile Include="Modules\Analyzers\ReversePing.cs" />
+    <Compile Include="Modules\Bugfix\PowerBroadcastFallback.cs" />
+    <Compile Include="Modules\S3Handlers\S3Enforcer.cs" />
+    <Compile Include="Modules\S3Handlers\S3Keeper.cs" />
+    <Compile Include="Modules\S3Handlers\S3Inhibitor.cs" />
+    <Compile Include="Modules\S3Handlers\S3Terminator.cs" />
+    <Compile Include="Modules\SessionHelper\SessionHelperConfig.cs" />
+    <Compile Include="Modules\SleepLogWriter.cs" />
+    <Compile Include="Modules\SleepMonitor.cs" />
+    <Compile Include="Modules\TerminalServer.cs" />
+    <Compile Include="Modules\Analyzers\RemoteDesktop.cs" />
+    <Compile Include="Modules\LogFileSweeper.cs" />
+    <Compile Include="Modules\SessionHelper\SessionHelper.cs" />
+    <Compile Include="Modules\SessionHelper\SessionHelperInstance.cs" />
+    <Compile Include="Modules\SessionHelper\Message.cs" />
+    <Compile Include="Modules\Test\TestSessionHelper.cs" />
+    <Compile Include="Modules\UI\TrayMenuController.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceContext.cs" />
+    <Compile Include="ModuleBase.cs" />
+    <Compile Include="Modules\Analyzers\PingHost.cs" />
+    <Compile Include="Modules\Analyzers\PowerRequests.cs" />
+    <Compile Include="Modules\IdleScanner.cs" />
+    <Compile Include="Tools\CassiaEx.cs" />
+    <Compile Include="Tools\INIFile.cs" />
+    <Compile Include="InsomniaService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InsomniaService.Designer.cs">
+      <DependentUpon>InsomniaService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\Interop\NetworkList\INetwork.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\Interop\NetworkList\INetworkConnection.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\Interop\NetworkList\INetworkListManager.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\Interop\NetworkList\NetworkListManagerClass.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\NetworkList\Network.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\NetworkList\NetworkCollection.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\NetworkList\NetworkConnection.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\NetworkList\NetworkConnectionCollection.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\NetworkList\NetworkListEnums.cs" />
+    <Compile Include="Tools\WindowsAPICodePack\NetworkList\NetworkListManager.cs" />
+    <Compile Include="Tools\Win32API.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InsomniaService.resx">
+      <DependentUpon>InsomniaService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\SHUTDOWN.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
